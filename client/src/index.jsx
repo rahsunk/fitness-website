@@ -5,7 +5,7 @@ import Skeleton from "./components/pages/Skeleton";
 import NotFound from "./components/pages/NotFound";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-import Map from "./components/pages/Map";
+import MapPage from "./components/pages/MapPage";
 import Gameplay from "./components/pages/Gameplay";
 
 import {
@@ -28,7 +28,7 @@ const router = createBrowserRouter(
       <Route path="/skeleton" element={<Skeleton />} />
       <Route path="/login" element={<Login />} />
       <Route path="/home/" element={<Home />} />
-      <Route path="/map/" element={<Map />} />
+      <Route path="/map/" element={<MapPage />} />
       <Route path="/game/" element={<Gameplay />} />
     </Route>
   )
