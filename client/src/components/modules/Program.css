@@ -1,0 +1,17 @@
+.Program-2-item {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+}
+
+.Program-1-item {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+}

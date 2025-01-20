@@ -1,0 +1,14 @@
+.Login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary--dim);
+  margin: 100px 400px;
+  padding: 50px 0px;
+}
+
+.Login-logo {
+  width: 25%;
+  height: 25%;
+  margin: 20px;
+}

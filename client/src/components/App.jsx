@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import { Outlet } from "react-router-dom";
+import NavBar from "./modules/NavBar";
 
 import jwt_decode from "jwt-decode";
 
@@ -37,6 +38,7 @@ const App = () => {
   };
 
   const handleLogout = () => {
+    console.log("Successfuly logged out");
     setUserId(undefined);
     post("/api/logout");
   };
@@ -48,9 +50,14 @@ const App = () => {
   };
 
   return (
-    <UserContext.Provider value={authContextValue}>
-      <Outlet />
-    </UserContext.Provider>
+    <>
+      <UserContext.Provider value={userId}>
+        <NavBar handleLogin={handleLogin} handleLogout={handleLogout} />
+        <div className="App-container">
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </>
   );
 };
 
