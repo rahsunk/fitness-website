@@ -57,7 +57,7 @@ const GamePage = () => {
   };
 
   if (curExerciseList.length == 0) {
-    return <div>NOT LOGGED IN</div>;
+    return <div>RETURN TO HOME FIRST!</div>;
   } else {
     return (
       <>

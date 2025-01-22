@@ -54,15 +54,67 @@ router.get("/workouts", (req, res) => {
         let newWorkout1 = existingWorkouts.find(
           (newWorkout1) => newWorkout1.name === "Warm-Up"
         );
+
+        if (newWorkout1.status === "ongoing") {
+          Workout.findOne({
+            id: req.query.id,
+            program: req.query.program,
+            name: newWorkout1.name,
+          }).then((obj) => {
+            obj.status = obj.status2;
+            obj.save();
+            newWorkout1 = obj;
+          });
+        }
+
         let newWorkout2 = existingWorkouts.find(
           (newWorkout1) => newWorkout1.name === "Workout 1"
         );
+
+        if (newWorkout2.status === "ongoing") {
+          Workout.findOne({
+            id: req.query.id,
+            program: req.query.program,
+            name: newWorkout1.name,
+          }).then((obj) => {
+            obj.status = obj.status2;
+            obj.save();
+            newWorkout2 = obj;
+          });
+        }
+
         let newWorkout3 = existingWorkouts.find(
           (newWorkout1) => newWorkout1.name === "Workout 2"
         );
+
+        if (newWorkout3.status === "ongoing") {
+          Workout.findOne({
+            id: req.query.id,
+            program: req.query.program,
+            name: newWorkout1.name,
+          }).then((obj) => {
+            obj.status = obj.status2;
+            obj.save();
+            newWorkout3 = obj;
+          });
+        }
+
         let newWorkout4 = existingWorkouts.find(
           (newWorkout1) => newWorkout1.name === "Final Workout"
         );
+
+        if (newWorkout4.status === "ongoing") {
+          Workout.findOne({
+            id: req.query.id,
+            program: req.query.program,
+            name: newWorkout1.name,
+          }).then((obj) => {
+            obj.status = obj.status2;
+            obj.save();
+            newWorkout4 = obj;
+          });
+        }
+
         res.send([newWorkout1, newWorkout2, newWorkout3, newWorkout4]);
       } else {
         let newWorkout1 = new Workout({
