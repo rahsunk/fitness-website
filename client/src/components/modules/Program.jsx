@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Program.css";
 import { UserContext } from "../context/UserContext";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 
 import Workout from "./Workout";
 
@@ -12,27 +12,34 @@ import Workout from "./Workout";
  */
 const Program = (props) => {
   const [workouts, setWorkouts] = useState([]);
-
-  // useEffect(() => {
-  //   // document.title = "News Feed";
-  //   get("/api/workouts").then((workoutObjs) => {
-  //     setWorkouts(workoutObjs);
-  //   });
-  // }, []);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // document.title = "News Feed";
     // console.log(props.id);
-    get("/api/workouts", { id: props.id, program: props.program }).then(
-      (workoutObjs) => {
-        setWorkouts(workoutObjs);
-      }
-    );
+    if (props.id != undefined) {
+      get("/api/workouts", { id: props.id, program: props.program }).then(
+        (workoutObjs) => {
+          setWorkouts(workoutObjs);
+        }
+      );
+    }
   }, []);
+
+  const initReset = () => {
+    post("/api/reset", {
+      id: props.id,
+      program: props.program,
+    }).then((message) => {
+      console.log(message, "ALL CLEAR");
+      setWorkouts(workouts);
+    });
+  };
 
   let workoutList = workouts.map((workoutObj) => (
     <Workout
       id={props.id}
+      program={props.program}
       name={workoutObj.name}
       img={workoutObj.img}
       status={workoutObj.status}
@@ -47,6 +54,9 @@ const Program = (props) => {
         {workoutList[2]}
       </div>
       <span className="Program-1-item">{workoutList[3]}</span>
+      <button onClick={initReset} className="Program-reset">
+        RESET
+      </button>
     </span>
   );
 };
