@@ -53,21 +53,21 @@ router.get("/workouts", (req, res) => {
     (existingWorkouts) => {
       console.log(req.query);
       if (existingWorkouts.length != 0) {
-        // let newWorkout1 = existingWorkouts.find(
-        //   (prop) => prop.name === "Warm-Up"
-        // );
-        // let newWorkout2 = existingWorkouts.find(
-        //   (prop) => prop.name === "Workout 1"
-        // );
-        // let newWorkout3 = existingWorkouts.find(
-        //   (prop) => prop.name === "Workout 2"
-        // );
-        // let newWorkout4 = existingWorkouts.find(
-        //   (prop) => prop.name === "Workout 3"
-        // );
-        // res.send([newWorkout1, newWorkout2, newWorkout3, newWorkout4]);
+        let newWorkout1 = existingWorkouts.find(
+          (newWorkout1) => newWorkout1.name === "Warm-Up"
+        );
+        let newWorkout2 = existingWorkouts.find(
+          (newWorkout1) => newWorkout1.name === "Workout 1"
+        );
+        let newWorkout3 = existingWorkouts.find(
+          (newWorkout1) => newWorkout1.name === "Workout 2"
+        );
+        let newWorkout4 = existingWorkouts.find(
+          (newWorkout1) => newWorkout1.name === "Final Workout"
+        );
+        res.send([newWorkout1, newWorkout2, newWorkout3, newWorkout4]);
 
-        res.send(existingWorkouts);
+        // res.send(existingWorkouts);
       } else {
         let newWorkout1 = new Workout({
           id: req.query.id,
@@ -214,10 +214,67 @@ router.get("/workouts", (req, res) => {
 router.post("/clear", (req, res) => {
   console.log("clear");
 
-  Workout.findOne({ name: "Warm-Up" }).then((obj) => {
+  Workout.findOne({
+    id: req.body.id,
+    program: req.body.program,
+    name: req.body.name,
+  }).then((obj) => {
     obj.status = "clear";
     obj.save();
   });
+
+  if (req.body.name === "Warm-Up") {
+    Workout.findOne({
+      id: req.body.id,
+      program: req.body.program,
+      name: "Workout 1",
+    }).then((obj) => {
+      obj.status = "unlock";
+      obj.save();
+    });
+    Workout.findOne({
+      id: req.body.id,
+      program: req.body.program,
+      name: "Workout 2",
+    }).then((obj) => {
+      obj.status = "unlock";
+      obj.save();
+    });
+  } else if (req.body.name === "Workout 1") {
+    Workout.findOne({
+      id: req.body.id,
+      program: req.body.program,
+      name: "Workout 1",
+    }).then((obj) => {
+      if (obj.status === "clear") {
+        Workout.findOne({
+          id: req.body.id,
+          program: req.body.program,
+          name: "Final Workout",
+        }).then((obj) => {
+          obj.status = "unlock";
+          obj.save();
+        });
+      }
+    });
+  } else if (req.body.name === "Workout 2") {
+    Workout.findOne({
+      id: req.body.id,
+      program: req.body.program,
+      name: "Workout 1",
+    }).then((obj) => {
+      if (obj.status === "clear") {
+        Workout.findOne({
+          id: req.body.id,
+          program: req.body.program,
+          name: "Final Workout",
+        }).then((obj) => {
+          obj.status = "unlock";
+          obj.save();
+        });
+      }
+    });
+  }
 });
 
 // Workout.updateOne(

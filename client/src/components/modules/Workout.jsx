@@ -15,12 +15,10 @@ const Workout = (props) => {
     navigate("/game");
   };
 
-  const initClear = () => {
-    // setStatus("clear");
-  };
+  const initNothing = () => {};
 
   return (
-    <Link onClick={status != "lock" ? initGameplay : initClear}>
+    <Link onClick={status != "lock" ? initGameplay : initNothing}>
       <span
         className={
           props.status != "clear" ? "Workout-button" : "Workout-button-clear"

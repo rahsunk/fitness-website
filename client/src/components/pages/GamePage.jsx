@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../context/UserContext";
 import { get, post } from "../../utilities";
@@ -42,6 +42,7 @@ const GamePage = () => {
   const [curExerciseList, setExerciseList] = useState([]);
   const [curID, setID] = useState(undefined);
   const [curExercise, setExercise] = useState(undefined);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // document.title = "News Feed";
@@ -75,8 +76,12 @@ const GamePage = () => {
 
   const handleClear = () => {
     setIndex(0);
-    // console.log("Called");
-    post("/api/clear", {});
+    post("/api/clear", {
+      id: props.userId,
+      program: curProgram,
+      name: "Warm-Up",
+    });
+    navigate("/home");
   };
 
   if (curExerciseList.length == 0) {
