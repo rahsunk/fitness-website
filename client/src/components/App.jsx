@@ -52,9 +52,13 @@ const App = () => {
   return (
     <>
       <UserContext.Provider value={userId}>
-        <NavBar handleLogin={handleLogin} handleLogout={handleLogout} />
+        <NavBar
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId}
+        />
         <div className="App-container">
-          <Outlet />
+          <Outlet context={{ userId: userId, handleLogin: handleLogin }} />
         </div>
       </UserContext.Provider>
     </>

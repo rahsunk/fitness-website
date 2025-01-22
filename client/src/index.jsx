@@ -6,7 +6,7 @@ import NotFound from "./components/pages/NotFound";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import MapPage from "./components/pages/MapPage";
-import Gameplay from "./components/pages/Gameplay";
+import GamePage from "./components/pages/GamePage";
 
 import {
   createBrowserRouter,
@@ -29,7 +29,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/home/" element={<Home />} />
       <Route path="/map/" element={<MapPage />} />
-      <Route path="/game/" element={<Gameplay />} />
+      <Route path="/game/" element={<GamePage />} />
     </Route>
   )
 );

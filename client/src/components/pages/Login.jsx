@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import "../../utilities.css";
 import "./Login.css";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
-const Login = (props) => {
-  const [catHappiness, setCatHappiness] = useState(0);
+const Login = () => {
+  let props = useOutletContext();
+  const navigate = useNavigate();
 
-  const incrementCatHappiness = () => {
-    setCatHappiness(catHappiness + 1);
+  const navigateToHome = (credentialResponse) => {
+    props.handleLogin(credentialResponse);
+    navigate("/home");
   };
 
   return (
@@ -20,7 +23,7 @@ const Login = (props) => {
       ></img>
       <GoogleLogin
         text="signin_with"
-        onSuccess={props.handleLogin}
+        onSuccess={navigateToHome}
         onFailure={(err) => console.log(err)}
         containerProps={{ className: "NavBar-link NavBar-login u-inlineBlock" }}
       />

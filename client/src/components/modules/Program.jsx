@@ -10,18 +10,29 @@ import Workout from "./Workout";
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-const Program = () => {
+const Program = (props) => {
   const [workouts, setWorkouts] = useState([]);
+
+  // useEffect(() => {
+  //   // document.title = "News Feed";
+  //   get("/api/workouts").then((workoutObjs) => {
+  //     setWorkouts(workoutObjs);
+  //   });
+  // }, []);
 
   useEffect(() => {
     // document.title = "News Feed";
-    get("/api/workouts").then((workoutObjs) => {
-      setWorkouts(workoutObjs);
-    });
+    // console.log(props.id);
+    get("/api/workouts", { id: props.id, program: props.program }).then(
+      (workoutObjs) => {
+        setWorkouts(workoutObjs);
+      }
+    );
   }, []);
 
   let workoutList = workouts.map((workoutObj) => (
     <Workout
+      id={props.id}
       name={workoutObj.name}
       img={workoutObj.img}
       status={workoutObj.status}

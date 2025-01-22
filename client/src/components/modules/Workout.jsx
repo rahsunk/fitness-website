@@ -11,8 +11,33 @@ const Workout = (props) => {
 
   const initGameplay = () => {
     //   Workout_Docs.updateOne({ name: "Warm-Up" }, { $set: { status: "clear" } });
+    // <GamePage id={props.id} />;
     navigate("/game");
   };
+
+  const initClear = () => {
+    // setStatus("clear");
+  };
+
+  return (
+    <Link onClick={status != "lock" ? initGameplay : initClear}>
+      <span
+        className={
+          props.status != "clear" ? "Workout-button" : "Workout-button-clear"
+        }
+      >
+        <img
+          src={
+            status != "lock"
+              ? props.img
+              : "https://images.emojiterra.com/google/noto-emoji/unicode-15/color/512px/1f512.png"
+          }
+          className="Workout-img"
+        ></img>
+      </span>
+      <h2>{status != "lock" ? props.name : "LOCKED"}</h2>
+    </Link>
+  );
 
   if (status == "lock") {
     return (

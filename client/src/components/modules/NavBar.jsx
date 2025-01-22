@@ -21,9 +21,23 @@ const NavBar = (props) => {
         Map
       </Link>
       <p className="NavBar-link">Settings</p>
-      <Link to="/login" className="NavBar-link" onClick={props.handleLogout}>
-        Logout
-      </Link>
+      {props.userId ? (
+        <button
+          className="NavBar-link NavBar-login u-inlineBlock"
+          onClick={props.handleLogout}
+        >
+          Sign out
+        </button>
+      ) : (
+        <GoogleLogin
+          text="signin_with"
+          onSuccess={props.handleLogin}
+          onFailure={(err) => console.log(err)}
+          containerProps={{
+            className: "NavBar-link NavBar-login u-inlineBlock",
+          }}
+        />
+      )}
     </nav>
   );
 };
