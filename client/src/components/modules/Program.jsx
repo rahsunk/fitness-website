@@ -26,15 +26,15 @@ const Program = (props) => {
     }
   }, []);
 
-  const initReset = () => {
-    post("/api/reset", {
-      id: props.id,
-      program: props.program,
-    }).then((message) => {
-      console.log(message, "ALL CLEAR");
-      setWorkouts(workouts);
-    });
-  };
+  // const initReset = () => {
+  //   post("/api/reset", {
+  //     id: props.id,
+  //     program: props.program,
+  //   }).then((message) => {
+  //     // console.log(message, "ALL CLEAR");
+  //     setWorkouts(workouts);
+  //   });
+  // };
 
   let workoutList = workouts.map((workoutObj) => (
     <Workout
@@ -42,7 +42,7 @@ const Program = (props) => {
       program={props.program}
       name={workoutObj.name}
       img={workoutObj.img}
-      status={workoutObj.status}
+      status={workoutObj.status2}
     />
   ));
 
@@ -54,9 +54,9 @@ const Program = (props) => {
         {workoutList[2]}
       </div>
       <span className="Program-1-item">{workoutList[3]}</span>
-      <button onClick={initReset} className="Program-reset">
+      {/* <button onClick={props.resetProgram} className="Program-reset">
         RESET
-      </button>
+      </button> */}
     </span>
   );
 };

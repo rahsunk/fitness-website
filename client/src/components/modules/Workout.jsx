@@ -15,7 +15,7 @@ const Workout = (props) => {
       program: props.program,
       name: name,
     }).then((message) => {
-      console.log(message, "ONGOING");
+      // console.log(message, "ONGOING");
       navigate("/game");
     });
   };

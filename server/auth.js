@@ -27,7 +27,6 @@ function getOrCreateUser(user) {
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
-      programList: ["Upper Body"],
     });
 
     return newUser.save();

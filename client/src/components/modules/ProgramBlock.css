@@ -1,0 +1,24 @@
+.ProgramBlock-box {
+  background-color: var(--primary--dim);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 50px;
+  margin: 20px;
+  border: black solid 5px;
+}
+
+.ProgramBlock-selected {
+  background-color: darkgoldenrod;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 50px;
+  margin: 20px;
+  border: black solid 5px;
+}
+
+.ProgramBlock-img {
+  width: 50px;
+  height: 50px;
+}

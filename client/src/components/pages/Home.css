@@ -4,3 +4,10 @@
   align-items: center;
   background-color: var(--primary);
 }
+
+.Home-reset {
+  background-color: red;
+  color: white;
+  padding: 20px;
+  font-size: 20px;
+}
