@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import "../../utilities.css";
-import "./ProgramsPage.css";
 import { useOutletContext } from "react-router-dom";
 import { get, post } from "../../utilities";
 
@@ -12,10 +11,6 @@ const ProgramsPage = () => {
   let props = useOutletContext();
 
   const [selectedProgram, setSelectedProgram] = useState("");
-
-  useEffect(() => {
-    //   get("/api/users", {id: props.userId})
-  }, []);
 
   // If logged in, render Programs Page, else render Login page
   return (

@@ -384,7 +384,7 @@ router.get("/workouts", (req, res) => {
               {
                 name: "Wall Sit",
                 img: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Wall-Sit.png",
-                rep: "30 seconds",
+                rep: 30,
                 timed: true,
               },
             ],
@@ -437,7 +437,143 @@ router.get("/workouts", (req, res) => {
               {
                 name: "Wall Sit",
                 img: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Wall-Sit.png",
-                rep: "30 seconds",
+                rep: 30,
+                timed: true,
+              },
+            ],
+          });
+          newWorkout4.save();
+          res.send([newWorkout1, newWorkout2, newWorkout3, newWorkout4]);
+        } else if (req.query.program === "Endurance") {
+          let newWorkout1 = new Workout({
+            id: req.query.id,
+            program: req.query.program,
+            name: "Warm-Up",
+            img: "https://static-00.iconduck.com/assets.00/fire-emoji-402x512-8ma95d17.png",
+            status: "unlock",
+            status2: "unlock",
+            exerciseList: [
+              {
+                name: "Jumping Jacks",
+                img: "https://liftmanual.com/wp-content/uploads/2023/04/jumping-jack.jpg",
+                rep: 30,
+                timed: true,
+              },
+              {
+                name: "Jump Rope",
+                img: "https://www.endomondo.com/wp-content/uploads/2023/12/Jump-Rope.jpg",
+                rep: 20,
+                timed: true,
+              },
+              {
+                name: "Jog in Place",
+                img: "https://i.pinimg.com/474x/67/2a/b8/672ab87aadcda24648cb5edb67007083.jpg",
+                rep: 20,
+                timed: true,
+              },
+            ],
+          });
+          newWorkout1.save();
+          let newWorkout2 = new Workout({
+            id: req.query.id,
+            program: req.query.program,
+            name: "Workout 1",
+            img: "https://images.emojiterra.com/google/android-11/512px/1f3c3.png",
+            status: "lock",
+            status2: "lock",
+            exerciseList: [
+              {
+                name: "Run on Treadmill",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQSjtLUBNsbb7ZHZfG6CFQVxo7ErpRvuR9Tw&s",
+                rep: 30,
+                timed: true,
+              },
+              {
+                name: "Burpees",
+                img: "https://cdn.shopify.com/s/files/1/0252/3155/6686/files/What_Muscles_do_Burpees_Work.jpg?v=1714495190",
+                rep: "15 reps",
+                timed: false,
+              },
+              {
+                name: "High Knees",
+                img: "https://cdn.shopify.com/s/files/1/1633/7705/files/high_knee_march_480x480.jpg?v=1676993131",
+                rep: 20,
+                timed: true,
+              },
+            ],
+          });
+          newWorkout2.save();
+          let newWorkout3 = new Workout({
+            id: req.query.id,
+            program: req.query.program,
+            name: "Workout 2",
+            img: "https://images.emojiterra.com/google/noto-emoji/unicode-15/color/512px/1f6b2.png",
+            status: "lock",
+            status2: "lock",
+            exerciseList: [
+              {
+                name: "Run on Treadmill",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQSjtLUBNsbb7ZHZfG6CFQVxo7ErpRvuR9Tw&s",
+                rep: 30,
+                timed: true,
+              },
+              {
+                name: "Box Jumps",
+                img: "https://fitwill.app/api/image/3892?p=1&w=1024&h=512",
+                rep: "15 reps",
+                timed: false,
+              },
+              {
+                name: "Cycling",
+                img: "https://tanita.eu/media/amasty/webp/wysiwyg/leg-muscles-used-during-a-pedal_jpg.webp",
+                rep: 60,
+                timed: true,
+              },
+            ],
+          });
+          newWorkout3.save();
+          let newWorkout4 = new Workout({
+            id: req.query.id,
+            program: req.query.program,
+            name: "Final Workout",
+            img: "https://logos-world.net/wp-content/uploads/2023/11/Squirt-Emoji.png",
+            status: "lock",
+            status2: "lock",
+            exerciseList: [
+              {
+                name: "Run on Treadmill",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQSjtLUBNsbb7ZHZfG6CFQVxo7ErpRvuR9Tw&s",
+                rep: 30,
+                timed: true,
+              },
+              {
+                name: "Burpees",
+                img: "https://cdn.shopify.com/s/files/1/0252/3155/6686/files/What_Muscles_do_Burpees_Work.jpg?v=1714495190",
+                rep: "15 reps",
+                timed: false,
+              },
+              {
+                name: "High Knees",
+                img: "https://cdn.shopify.com/s/files/1/1633/7705/files/high_knee_march_480x480.jpg?v=1676993131",
+                rep: 20,
+                timed: true,
+              },
+              {
+                name: "Run on Treadmill",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQSjtLUBNsbb7ZHZfG6CFQVxo7ErpRvuR9Tw&s",
+                rep: 30,
+                timed: true,
+              },
+              {
+                name: "Box Jumps",
+                img: "https://fitwill.app/api/image/3892?p=1&w=1024&h=512",
+                rep: "15 reps",
+                timed: false,
+              },
+              {
+                name: "Cycling",
+                img: "https://tanita.eu/media/amasty/webp/wysiwyg/leg-muscles-used-during-a-pedal_jpg.webp",
+                rep: 60,
                 timed: true,
               },
             ],
@@ -583,10 +719,6 @@ router.post("/exit", (req, res) => {
     res.send({ message: "EXIT" });
   });
 });
-
-// router.post("/delete", (req, res) => {
-//   Workout.deleteMany({});
-// });
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

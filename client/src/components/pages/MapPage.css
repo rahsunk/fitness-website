@@ -1,2 +1,19 @@
 .Map-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary--dim);
+  margin: 30px 150px;
+}
+
+/* .Map-info {
+  background-color: var(--primary--dim);
+  padding: 30px;
+  margin: 30px;
+  width: 80vh;
+} */
+
+.Map-map {
+  margin: 30px;
 }

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 
 import "../../utilities.css";
-import "./Skeleton.css";
 import { UserContext } from "../App";
 
 const Skeleton = () => {

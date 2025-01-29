@@ -12,6 +12,7 @@ const Home = () => {
   let props = useOutletContext();
   const [program, setProgram] = useState("");
   const [workouts, setWorkouts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // State for managing loading phase
 
   useEffect(() => {
     if (props.userId != undefined) {
@@ -37,23 +38,34 @@ const Home = () => {
       id: props.userId,
       program: program,
     }).then(() => {
-      // console.log(message, "ALL CLEAR");
-      setWorkouts([]); // Clear current workouts
+      // Clear current workouts and program
+      setWorkouts([]);
       setProgram("");
 
       get("/api/programs", { id: props.userId }).then((programObj) => {
-        setProgram(programObj.curProgram); // Set the new program
-        getWorkouts(programObj.curProgram); // Fetch workouts for the new program
+        setProgram(programObj.curProgram);
+        getWorkouts(programObj.curProgram);
       });
     });
   };
-  // If logged in, render Program, else render Login page
+
+  useEffect(() => {
+    if (program) {
+      // Wait for 3 seconds (3000ms) before rendering the Program component
+      const timer = setTimeout(() => {
+        setIsLoading(false); // Set loading state to false after delay
+      }, 1000);
+
+      return () => clearTimeout(timer); // Clean up the timer on unmount
+    }
+  }, [program]);
+
   return (
     <div className="Home-screen">
       {!props.userId ? (
         <Login />
-      ) : !program ? (
-        <h1>LOADING...</h1>
+      ) : isLoading ? (
+        <h1>LOADING...</h1> // Show loading message for 3 seconds
       ) : (
         <>
           <Program
@@ -63,8 +75,9 @@ const Home = () => {
             resetProgram={resetProgram}
           />
           <button onClick={resetProgram} className="Home-reset">
-            RESET ALL PROGRAMS
+            RESET ALL
           </button>
+          <h3>Refresh after hitting reset!</h3>
         </>
       )}
     </div>

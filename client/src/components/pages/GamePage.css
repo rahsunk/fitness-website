@@ -2,18 +2,12 @@
   /* text-align: center; */
   display: flex;
   justify-content: space-between;
+  justify-content: center;
 }
 
 .Gameplay-exit {
   background-color: red;
   color: white;
-  padding: 20px;
-  font-size: 20px;
-}
-
-.Gameplay-next {
-  background-color: var(--primary--dim);
-  color: black;
   padding: 20px;
   font-size: 20px;
 }
@@ -25,8 +19,20 @@
 }
 
 .Exercise-box img {
-  width: 400px;
+  max-width: 400px;
+  height: auto;
   margin: 20px;
+}
+
+.Exercise-exit {
+  margin: 20px;
+}
+
+.Gameplay-next {
+  background-color: var(--primary--dim);
+  color: black;
+  padding: 20px;
+  font-size: 20px;
 }
 
 .Gameplay-finish {
@@ -34,4 +40,25 @@
   color: white;
   padding: 20px;
   font-size: 20px;
+}
+
+.Gameplay-time {
+  background-color: var(--primary--dim);
+  padding: 20px;
+  font-size: 40px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.Gameplay-time-five-seconds {
+  background-color: var(--primary--dim);
+  padding: 20px;
+  font-size: 40px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  color: red;
 }

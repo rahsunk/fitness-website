@@ -13,8 +13,9 @@ const GamePage = () => {
   const [curProgram, setProgram] = useState("");
   const [index, setIndex] = useState(0);
   const [curExerciseList, setExerciseList] = useState([]);
-  const [curID, setID] = useState(undefined);
   const [curExercise, setExercise] = useState(undefined);
+  const [curID, setID] = useState(undefined);
+  const [time, setTime] = useState(30);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,16 +35,6 @@ const GamePage = () => {
             setExercise(workoutObj.name);
           });
         });
-      // setTimeout(() => {}, 500);
-      // get("/api/start", {
-      //   id: props.userId,
-      //   program: curProgram,
-      //   status: "ongoing",
-      // }).then((workoutObj) => {
-      //   setExerciseList(workoutObj.exerciseList);
-      //   setID(workoutObj.id);
-      //   setExercise(workoutObj.name);
-      // });
     }
   }, []);
 
@@ -58,6 +49,9 @@ const GamePage = () => {
   });
 
   const handleNext = () => {
+    if (curExerciseList[index + 1].timed) {
+      setTime(curExerciseList[index + 1].rep);
+    }
     setIndex(index + 1);
   };
 
@@ -90,21 +84,16 @@ const GamePage = () => {
   } else {
     return (
       <>
-        <div className="Gameplay-topRow">
-          <h1>GET MOVING!!!</h1>
-          <Link>
-            <button onClick={handleExit} className="Gameplay-exit">
-              Exit
-            </button>
-          </Link>
-        </div>
         <span className="Exercise-box">
-          <Exercise
-            name={curExerciseList[index].name}
-            img={curExerciseList[index].img}
-            rep={curExerciseList[index].rep}
-            timed={curExerciseList[index].timed}
-          />
+          <div className="Exercise-exit">
+            <Link>
+              <button onClick={handleExit} className="Gameplay-exit">
+                Exit
+              </button>
+            </Link>
+          </div>
+          <Exercise exercise={curExerciseList[index]} />
+
           {index < curExerciseList.length - 1 ? (
             <button className="Gameplay-next" onClick={handleNext}>
               Next
@@ -114,13 +103,6 @@ const GamePage = () => {
               <button className="Gameplay-finish">Finish</button>
             </Link>
           )}
-
-          {/* <span className="Program-1-item">{workoutList[0]}</span>
-          <div className="Program-2-item">
-            {workoutList[1]}
-            {workoutList[2]}
-          </div>
-          <span className="Program-1-item">{workoutList[3]}</span> */}
         </span>
       </>
     );

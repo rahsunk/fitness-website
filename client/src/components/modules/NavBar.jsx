@@ -6,23 +6,23 @@ import "./NavBar.css";
 import { UserContext } from "../context/UserContext";
 
 /**
- * The navigation bar at the top of all pages. Takes no props.
+ * The navigation bar at the top of all pages.
  */
 const NavBar = (props) => {
   return (
     <nav className="NavBar-container">
-      <p className="NavBar-title">Fit-mates</p>
+      <div>Fit-mates</div>
       <Link to="/home" className="NavBar-link">
         Home
       </Link>
       <Link to="/programs" className="NavBar-link">
         Programs
       </Link>
-      <p className="NavBar-link">Friends</p>
+      {/* <p className="NavBar-link">Friends</p> */}
       <Link to="/map" className="NavBar-link">
         Map
       </Link>
-      <p className="NavBar-link">Settings</p>
+      {/* <p className="NavBar-link">Settings</p> */}
       {props.userId ? (
         <button
           className="NavBar-link NavBar-login u-inlineBlock"
@@ -31,14 +31,7 @@ const NavBar = (props) => {
           Sign out
         </button>
       ) : (
-        <GoogleLogin
-          text="signin_with"
-          onSuccess={props.handleLogin}
-          onFailure={(err) => console.log(err)}
-          containerProps={{
-            className: "NavBar-link NavBar-login u-inlineBlock",
-          }}
-        />
+        <div></div>
       )}
     </nav>
   );
